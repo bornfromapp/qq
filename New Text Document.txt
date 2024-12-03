@@ -1,0 +1,252 @@
+USE [QLVT]
+GO
+/****** Object:  Table [dbo].[ChiTietHoaDon]    Script Date: 12/3/2024 8:55:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ChiTietHoaDon](
+	[masp] [int] NOT NULL,
+	[mahd] [int] NOT NULL,
+	[soluong] [int] NULL,
+	[dongia] [decimal](18, 2) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[masp] ASC,
+	[mahd] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ChucVu]    Script Date: 12/3/2024 8:55:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ChucVu](
+	[machucvu] [int] NOT NULL,
+	[tenchucvu] [nvarchar](100) NULL,
+	[isdelete] [bit] NULL,
+ CONSTRAINT [PK__ChucVu__38D260685D1CF19A] PRIMARY KEY CLUSTERED 
+(
+	[machucvu] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[HoaDon]    Script Date: 12/3/2024 8:55:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[HoaDon](
+	[mahd] [int] NOT NULL,
+	[magv] [int] NULL,
+	[ngaylap] [datetime] NULL,
+	[isdelete] [bit] NULL,
+	[totalAmount] [decimal](18, 2) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[mahd] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[LoaiSanPham]    Script Date: 12/3/2024 8:55:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[LoaiSanPham](
+	[maloai] [int] NOT NULL,
+	[tenloai] [nvarchar](100) NULL,
+	[isdelete] [bit] NULL,
+ CONSTRAINT [PK__LoaiSanP__734B3AEA25F4C388] PRIMARY KEY CLUSTERED 
+(
+	[maloai] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[NguoiDung]    Script Date: 12/3/2024 8:55:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[NguoiDung](
+	[manguoidung] [int] NOT NULL,
+	[hoten] [nvarchar](100) NULL,
+	[matkhau] [varchar](100) NULL,
+	[isdelete] [bit] NULL,
+	[machucvu] [int] NULL,
+	[email] [varchar](100) NULL,
+	[sdt] [varchar](15) NULL,
+ CONSTRAINT [PK__NguoiDun__2D5730E6D2D47FB0] PRIMARY KEY CLUSTERED 
+(
+	[manguoidung] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[NhaCungCap]    Script Date: 12/3/2024 8:55:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[NhaCungCap](
+	[manhacungcap] [int] NOT NULL,
+	[tennhacungcap] [nvarchar](100) NULL,
+	[isdelete] [bit] NULL,
+ CONSTRAINT [PK__NhaCungC__BE47CF22B060A3E2] PRIMARY KEY CLUSTERED 
+(
+	[manhacungcap] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[NhapHang]    Script Date: 12/3/2024 8:55:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[NhapHang](
+	[manhaphang] [int] NOT NULL,
+	[masp] [int] NULL,
+	[ngaynhap] [datetime] NULL,
+	[soluong] [int] NULL,
+	[isdelete] [bit] NULL,
+	[dongianhap] [decimal](18, 2) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[manhaphang] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[SanPham]    Script Date: 12/3/2024 8:55:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[SanPham](
+	[masp] [int] NOT NULL,
+	[maloai] [int] NULL,
+	[manhacungcap] [int] NULL,
+	[anh] [nvarchar](100) NULL,
+	[isdelete] [bit] NULL,
+	[soluong] [int] NULL,
+	[ten] [nvarchar](100) NULL,
+	[donvitinh] [nvarchar](50) NULL,
+ CONSTRAINT [PK__SanPham__7A217672BD57E3E4] PRIMARY KEY CLUSTERED 
+(
+	[masp] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[XuatHang]    Script Date: 12/3/2024 8:55:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[XuatHang](
+	[maxuathang] [int] NOT NULL,
+	[masp] [int] NULL,
+	[ngayxuat] [datetime] NULL,
+	[soluong] [int] NULL,
+	[isdelete] [bit] NULL,
+	[dongiaxuat] [decimal](18, 2) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[maxuathang] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+INSERT [dbo].[ChucVu] ([machucvu], [tenchucvu], [isdelete]) VALUES (1, N'Nhân Viên', 0)
+INSERT [dbo].[ChucVu] ([machucvu], [tenchucvu], [isdelete]) VALUES (2, N'Quản lý', 0)
+INSERT [dbo].[ChucVu] ([machucvu], [tenchucvu], [isdelete]) VALUES (3, N'vll', 1)
+INSERT [dbo].[ChucVu] ([machucvu], [tenchucvu], [isdelete]) VALUES (4, N'admin', 1)
+GO
+INSERT [dbo].[LoaiSanPham] ([maloai], [tenloai], [isdelete]) VALUES (1, N'sung', 0)
+INSERT [dbo].[LoaiSanPham] ([maloai], [tenloai], [isdelete]) VALUES (2, N'đạn', 1)
+INSERT [dbo].[LoaiSanPham] ([maloai], [tenloai], [isdelete]) VALUES (3, N'katana', 0)
+GO
+INSERT [dbo].[NguoiDung] ([manguoidung], [hoten], [matkhau], [isdelete], [machucvu], [email], [sdt]) VALUES (1, N'habaek', N'123', 0, 1, N'giang', N'0386571278')
+INSERT [dbo].[NguoiDung] ([manguoidung], [hoten], [matkhau], [isdelete], [machucvu], [email], [sdt]) VALUES (2, N'Hoa', N'321', 1, 1, N'hoa', N'0353403490')
+INSERT [dbo].[NguoiDung] ([manguoidung], [hoten], [matkhau], [isdelete], [machucvu], [email], [sdt]) VALUES (3, N'Bin', N'111', 1, 2, N'binh', N'1223435')
+GO
+INSERT [dbo].[NhaCungCap] ([manhacungcap], [tennhacungcap], [isdelete]) VALUES (1, N'piltover', 0)
+INSERT [dbo].[NhaCungCap] ([manhacungcap], [tennhacungcap], [isdelete]) VALUES (2, N'zaun', 0)
+GO
+INSERT [dbo].[SanPham] ([masp], [maloai], [manhacungcap], [anh], [isdelete], [soluong], [ten], [donvitinh]) VALUES (1, 1, 1, N'sungluc.PNG', 0, 10, N'Súng lục', N'Cái')
+INSERT [dbo].[SanPham] ([masp], [maloai], [manhacungcap], [anh], [isdelete], [soluong], [ten], [donvitinh]) VALUES (2, 1, 1, N'sungluc.PNG', 0, 10, N'Súng lục', N'Cái')
+INSERT [dbo].[SanPham] ([masp], [maloai], [manhacungcap], [anh], [isdelete], [soluong], [ten], [donvitinh]) VALUES (3, 2, 1, N'édfsda', 0, 100, N'Súng 67', N'Cái')
+INSERT [dbo].[SanPham] ([masp], [maloai], [manhacungcap], [anh], [isdelete], [soluong], [ten], [donvitinh]) VALUES (5, 3, 1, N'', 1, 100, N'Súng 67', N'Cái')
+GO
+ALTER TABLE [dbo].[ChucVu] ADD  CONSTRAINT [DF__ChucVu__isdelete__6E01572D]  DEFAULT ((0)) FOR [isdelete]
+GO
+ALTER TABLE [dbo].[HoaDon] ADD  DEFAULT ((0)) FOR [isdelete]
+GO
+ALTER TABLE [dbo].[LoaiSanPham] ADD  CONSTRAINT [DF__LoaiSanPh__isdel__49C3F6B7]  DEFAULT ((0)) FOR [isdelete]
+GO
+ALTER TABLE [dbo].[NguoiDung] ADD  CONSTRAINT [DF__NguoiDung__isdel__6383C8BA]  DEFAULT ((0)) FOR [isdelete]
+GO
+ALTER TABLE [dbo].[NhaCungCap] ADD  CONSTRAINT [DF__NhaCungCa__isdel__4CA06362]  DEFAULT ((0)) FOR [isdelete]
+GO
+ALTER TABLE [dbo].[NhapHang] ADD  DEFAULT ((0)) FOR [isdelete]
+GO
+ALTER TABLE [dbo].[SanPham] ADD  CONSTRAINT [DF__SanPham__isdelet__4F7CD00D]  DEFAULT ((0)) FOR [isdelete]
+GO
+ALTER TABLE [dbo].[SanPham] ADD  CONSTRAINT [DF__SanPham__soluong__7A672E12]  DEFAULT ((0)) FOR [soluong]
+GO
+ALTER TABLE [dbo].[XuatHang] ADD  DEFAULT ((0)) FOR [isdelete]
+GO
+ALTER TABLE [dbo].[ChiTietHoaDon]  WITH CHECK ADD FOREIGN KEY([mahd])
+REFERENCES [dbo].[HoaDon] ([mahd])
+GO
+ALTER TABLE [dbo].[ChiTietHoaDon]  WITH CHECK ADD FOREIGN KEY([mahd])
+REFERENCES [dbo].[HoaDon] ([mahd])
+GO
+ALTER TABLE [dbo].[ChiTietHoaDon]  WITH CHECK ADD  CONSTRAINT [FK__ChiTietHoa__masp__6A30C649] FOREIGN KEY([masp])
+REFERENCES [dbo].[SanPham] ([masp])
+GO
+ALTER TABLE [dbo].[ChiTietHoaDon] CHECK CONSTRAINT [FK__ChiTietHoa__masp__6A30C649]
+GO
+ALTER TABLE [dbo].[HoaDon]  WITH CHECK ADD  CONSTRAINT [FK__HoaDon__magv__6754599E] FOREIGN KEY([magv])
+REFERENCES [dbo].[NguoiDung] ([manguoidung])
+GO
+ALTER TABLE [dbo].[HoaDon] CHECK CONSTRAINT [FK__HoaDon__magv__6754599E]
+GO
+ALTER TABLE [dbo].[NguoiDung]  WITH CHECK ADD  CONSTRAINT [FK_NguoiDung_ChucVu] FOREIGN KEY([machucvu])
+REFERENCES [dbo].[ChucVu] ([machucvu])
+GO
+ALTER TABLE [dbo].[NguoiDung] CHECK CONSTRAINT [FK_NguoiDung_ChucVu]
+GO
+ALTER TABLE [dbo].[NhapHang]  WITH CHECK ADD  CONSTRAINT [FK__NhapHang__masp__5535A963] FOREIGN KEY([masp])
+REFERENCES [dbo].[SanPham] ([masp])
+GO
+ALTER TABLE [dbo].[NhapHang] CHECK CONSTRAINT [FK__NhapHang__masp__5535A963]
+GO
+ALTER TABLE [dbo].[SanPham]  WITH CHECK ADD  CONSTRAINT [FK__SanPham__maloai__5070F446] FOREIGN KEY([maloai])
+REFERENCES [dbo].[LoaiSanPham] ([maloai])
+GO
+ALTER TABLE [dbo].[SanPham] CHECK CONSTRAINT [FK__SanPham__maloai__5070F446]
+GO
+ALTER TABLE [dbo].[SanPham]  WITH CHECK ADD  CONSTRAINT [FK__SanPham__manhacu__5165187F] FOREIGN KEY([manhacungcap])
+REFERENCES [dbo].[NhaCungCap] ([manhacungcap])
+GO
+ALTER TABLE [dbo].[SanPham] CHECK CONSTRAINT [FK__SanPham__manhacu__5165187F]
+GO
+ALTER TABLE [dbo].[XuatHang]  WITH CHECK ADD  CONSTRAINT [FK__XuatHang__masp__59063A47] FOREIGN KEY([masp])
+REFERENCES [dbo].[SanPham] ([masp])
+GO
+ALTER TABLE [dbo].[XuatHang] CHECK CONSTRAINT [FK__XuatHang__masp__59063A47]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_LoginNguoiDung]    Script Date: 12/3/2024 8:55:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_LoginNguoiDung]
+    @Email VARCHAR(100),
+    @Password VARCHAR(100)
+AS
+BEGIN
+    SELECT manguoidung, hoten, machucvu
+    FROM NguoiDung
+    WHERE email = @Email AND matkhau = @Password AND isdelete = 0;
+END
+
+GO
